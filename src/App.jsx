@@ -6,16 +6,11 @@ import { Eye, Check, ExternalLink, Sparkles, Sliders } from 'lucide-react';
 
 export default function App() {
   const [selectedOption, setSelectedOption] = useState('1');
-  const [showSwitcher, setShowSwitcher] = useState(true);
+  const [showSwitcher, setShowSwitcher] = useState(false);
 
   useEffect(() => {
     // If forced by pathname
     const path = window.location.pathname.toLowerCase();
-    if (path.includes('option1')) {
-      setSelectedOption('1');
-      setShowSwitcher(false);
-      return;
-    }
     if (path.includes('option2')) {
       setSelectedOption('2');
       setShowSwitcher(false);
@@ -23,6 +18,11 @@ export default function App() {
     }
     if (path.includes('option3')) {
       setSelectedOption('3');
+      setShowSwitcher(false);
+      return;
+    }
+    if (path.includes('option1')) {
+      setSelectedOption('1');
       setShowSwitcher(false);
       return;
     }
@@ -40,8 +40,8 @@ export default function App() {
     if (v === '1' || v === '2' || v === '3') {
       setSelectedOption(v);
     }
-    if (params.get('standalone') === 'true' || params.get('clean') === 'true') {
-      setShowSwitcher(false);
+    if (params.get('review') === 'true' || params.get('demo') === 'true') {
+      setShowSwitcher(true);
     }
   }, []);
 
